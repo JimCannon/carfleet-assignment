@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react'
+import AppRouter from './routes/AppRouter'
+import { useDispatch } from 'react-redux'
+import { setVehicles } from './features/vehicles/vehiclesSlice'
+import { setEquipments } from './features/equipments/equipmentsSlice'
+import vehiclesData from './mockdata/vehicles.json'
+import equipmentsData from './mockdata/equipments.json'
+import { render, screen } from '@testing-library/react'
+
+test('renders the site', () => {
+	render(<App />)
+	const siteElement = screen.getByTestId('site')
+	expect(siteElement).toBeInTheDocument()
+})
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(setVehicles(vehiclesData))
+		dispatch(setEquipments(equipmentsData))
+	}, [dispatch])
+
+	return (
+		<div>
+			<AppRouter />
+		</div>
+	)
 }
 
-export default App;
+export default App
