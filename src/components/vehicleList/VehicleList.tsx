@@ -38,12 +38,15 @@ const VehicleList = () => {
 								<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 									{vehicle.name}
 								</Typography>
+								{/* 
+									// Status shouldnt be displayed?
 								<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 									{vehicle.status}
-								</Typography>
-								<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+								</Typography> }
+									// Driver shouldnt be displayed?
+								{ <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 									{vehicle.driver}
-								</Typography>
+								</Typography> */}
 								<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 									{vehicle.fuelType}
 								</Typography>

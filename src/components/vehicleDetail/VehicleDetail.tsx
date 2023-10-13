@@ -76,6 +76,7 @@ const VehicleDetail = () => {
 					value={editVehicle?.name}
 					onChange={(e) => setEditVehicle({ ...editVehicle!, name: e.target.value })}
 				></TextField>
+				{/* Driver and Status shouldnt be displayed?? 
 				<TextField
 					sx={{ margin: '12px' }}
 					id="vehicle-driver"
@@ -89,7 +90,7 @@ const VehicleDetail = () => {
 					label="Status"
 					value={editVehicle?.status}
 					onChange={(e) => setEditVehicle({ ...editVehicle!, status: e.target.value })}
-				/>
+				/> */}
 				<TextField
 					sx={{ margin: '12px' }}
 					id="vehicle-fuelType"
