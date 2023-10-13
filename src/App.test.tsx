@@ -1,143 +1,15 @@
-import React from 'react'
 import { render } from '@testing-library/react'
-import App from './App'
+
 import VehicleList from './components/vehicleList/VehicleList'
-import { Provider } from 'react-redux'
-// const initialState = [
-//   {
-//     "id": "v1",
-//     "name": "AB23",
-//     "driver": "SpongeBob SquarePants",
-//     "status": "active",
-//     "fuelType": "LNG",
-//     "equipments": [1,2]
-//   },
-//   {
-//     "id": "v2",
-//     "name": "XXW123",
-//     "driver": "Patrick Star",
-//     "status": "active",
-//     "fuelType": "Diesel",
-//     "equipments": [2]
-//   },
-//   {
-//     "id": "v3",
-//     "name": "GA33",
-//     "driver": "Squidward Tentacles",
-//     "status": "active",
-//     "fuelType": "CNG",
-//     "equipments": [4]
-//   },
-//   {
-//     "id": "v4",
-//     "name": "LK21",
-//     "driver": "Mr. Krabs",
-//     "status": "inactive",
-//     "fuelType": "Diesel",
-//     "equipments": []
-//   },
-//   {
-//     "id": "v5",
-//     "name": "GHB 5",
-//     "driver": "Plankton and Karen",
-//     "status": "active",
-//     "fuelType": "Diesel",
-//     "equipments": [1,4]
-//   },
-//   {
-//     "id": "v6",
-//     "name": "LLO21",
-//     "driver": "Sandy Cheeks",
-//     "status": "active",
-//     "fuelType": "Diesel",
-//     "equipments": [3]
-//   },
-//   {
-//     "id": "v7",
-//     "name": "OWL21",
-//     "driver": "Mrs. Puff",
-//     "status": "active",
-//     "fuelType": "Electrical",
-//     "equipments": []
-//   },
-//   {
-//     "id": "v8",
-//     "name": "JNWJ12",
-//     "driver": "Pearl Krabs",
-//     "status": "active",
-//     "fuelType": "Eletrical",
-//     "equipments": [3]
-//   },
-//   {
-//     "id": "v9",
-//     "name": "KL2OK1",
-//     "driver": "Gary the Snail",
-//     "status": "active",
-//     "fuelType": "LNG",
-//     "equipments": []
-//   },
-//   {
-//     "id": "v10",
-//     "name": "LSAO21",
-//     "driver": "Patchy the Pirate",
-//     "status": "active",
-//     "fuelType": "LNG",
-//     "equipments": [2]
-//   },
-//   {
-//     "id": "v11",
-//     "name": "LSP21P",
-//     "driver": "Potty the Parrot",
-//     "status": "inactive",
-//     "fuelType": "Diesel",
-//     "equipments": [4]
-//   },
-//   {
-//     "id": "v12",
-//     "name": "212AWN",
-//     "driver": "French Narrator",
-//     "status": "active",
-//     "fuelType": "Diesel",
-//     "equipments": []
-//   },
-//   {
-//     "id": "v13",
-//     "name": "1W321W",
-//     "driver": "Mermaid Man and Barnacle Boy",
-//     "status": "active",
-//     "fuelType": "Diesel",
-//     "equipments": [2]
-//   },
-//   {
-//     "id": "v14",
-//     "name": "14HUEO",
-//     "driver": "The Flying Dutchman",
-//     "status": "active",
-//     "fuelType": "Diesel"
-//   },
-//   {
-//     "id": "v15",
-//     "name": "",
-//     "driver": "King Neptune",
-//     "status": "active",
-//     "fuelType": "Diesel",
-//     "equipments": [1,2,3,4]
-//   }
-// ];
-// const store = mockStore(initialState);
 
 const mockUseSelector = jest.fn()
 jest.mock('react-redux', () => ({
-	// ...jest.requireActual('react-redux'),
-	useSelector: mockUseSelector(),
+	...jest.requireActual('react-redux'),
+	useSelector: () => mockUseSelector(),
 }))
 
-test('renders learn react link', () => {
-	const { getByText } = render(
-		// <Provider>
-		<VehicleList />
-		// </Provider>
-	)
+test('It calls useSelector twice', () => {
+	const { getByText } = render(<VehicleList />)
 	const linkElement = getByText(/Vehicle List/i)
-	expect(mockUseSelector).toBeCalledTimes(1)
+	expect(mockUseSelector).toBeCalledTimes(2)
 })
