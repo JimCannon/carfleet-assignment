@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../app/store'
-import { List, ListItem, ListItemText, Typography } from '@mui/material'
+import { List, ListItem, Typography } from '@mui/material'
 
 const EquipmentsList = () => {
 	const equipments = useSelector((state: RootState) => state.equipments)

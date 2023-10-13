@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { RootState } from '../../app/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -10,21 +10,9 @@ import {
 	MenuItem,
 	FormControl,
 	Select,
-	Theme,
 	Card,
 } from '@mui/material'
 import { updateVehicle } from '../../features/vehicles/vehiclesSlice'
-
-const ITEM_HEIGHT = 48
-const ITEM_PADDING_TOP = 8
-const MenuProps = {
-	PaperProps: {
-		style: {
-			maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-			width: 250,
-		},
-	},
-}
 
 // Didnt work with interface, worked with type. Read upon this
 type RouteParams = {
@@ -70,45 +58,66 @@ const VehicleDetail = () => {
 		setSelectedEquipments(event.target.value as number[])
 	}
 
-	// useEffect(() => {}, [editVehicle?.driver])
-
 	return (
-		<Card sx={{ maxWidth: 500 }}>
-			<Typography>{vehicle.name}</Typography>
-			<Typography>{vehicle.driver}</Typography>
-			<Typography>{vehicle.status}</Typography>
-			<Typography>{vehicle.fuelType}</Typography>
-			<TextField
-				id="vehicle-driver"
-				label="Driver"
-				value={editVehicle?.driver}
-				onChange={(e) => setEditVehicle({ ...editVehicle!, driver: e.target.value })}
-			/>
-			<TextField
-				label="Vehicle Name"
-				value={editVehicle?.name}
-				onChange={(e) => setEditVehicle({ ...editVehicle!, name: e.target.value })}
-			></TextField>
+		<div style={{ display: 'flex', height: '100vh' }}>
+			<Card
+				sx={{
+					margin: 'auto',
+					display: 'flex',
+					flexDirection: 'column',
+					maxWidth: 500,
+					maxHeight: 700,
+				}}
+			>
+				<Typography sx={{ margin: '24px' }}>{vehicle.id}</Typography>
+				<TextField
+					sx={{ margin: '12px' }}
+					label="Vehicle Name"
+					value={editVehicle?.name}
+					onChange={(e) => setEditVehicle({ ...editVehicle!, name: e.target.value })}
+				></TextField>
+				<TextField
+					sx={{ margin: '12px' }}
+					id="vehicle-driver"
+					label="Driver"
+					value={editVehicle?.driver}
+					onChange={(e) => setEditVehicle({ ...editVehicle!, driver: e.target.value })}
+				/>
+				<TextField
+					sx={{ margin: '12px' }}
+					id="vehicle-status"
+					label="Status"
+					value={editVehicle?.status}
+					onChange={(e) => setEditVehicle({ ...editVehicle!, status: e.target.value })}
+				/>
+				<TextField
+					sx={{ margin: '12px' }}
+					id="vehicle-fuelType"
+					label="Fuel Type"
+					value={editVehicle?.fuelType}
+					onChange={(e) => setEditVehicle({ ...editVehicle!, fuelType: e.target.value })}
+				/>
 
-			<FormControl sx={{ m: 1, width: 300 }}>
-				<InputLabel id="eq-checkbox-label">Equipments</InputLabel>
-				<Select
-					labelId="eq-checkbox-name"
-					id="eq-checkbox"
-					multiple
-					value={selectedEquipments ? selectedEquipments : []}
-					onChange={handleEquipmentChange}
-				>
-					{equipments.map((equipment, index) => (
-						<MenuItem key={index} value={equipment.id}>
-							{equipment.name}
-						</MenuItem>
-					))}
-				</Select>
-			</FormControl>
+				<FormControl sx={{ margin: '12px', width: 300 }}>
+					<InputLabel id="eq-checkbox-label">Equipments</InputLabel>
+					<Select
+						labelId="eq-checkbox-label"
+						id="eq-checkbox"
+						multiple
+						value={selectedEquipments ? selectedEquipments : []}
+						onChange={handleEquipmentChange}
+					>
+						{equipments.map((equipment, index) => (
+							<MenuItem key={index} value={equipment.id}>
+								{equipment.name}
+							</MenuItem>
+						))}
+					</Select>
+				</FormControl>
 
-			<Button onClick={handleUpdate}>Update Vehicle</Button>
-		</Card>
+				<Button onClick={handleUpdate}>Update Vehicle</Button>
+			</Card>
+		</div>
 	)
 }
 
