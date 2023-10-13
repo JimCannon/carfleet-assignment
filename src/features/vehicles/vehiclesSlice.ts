@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { generateId } from '../../utils/uuid'
-
-interface Equipments {
-	id: number
-	name: string
-}
+// import { generateId } from '../../utils/uuid'
 
 interface Vehicle {
 	id: string
@@ -24,6 +19,7 @@ const vehiclesSlice = createSlice({
 		setVehicles: (state, action: PayloadAction<Vehicle[]>) => {
 			return action.payload
 		},
+		// features for the future
 		// addVehicle: (state, action: PayloadAction<Omit<Vehicle, 'id'>>) => {
 		// 	const newVehicle = {
 		// 		id: generateId(),

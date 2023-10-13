@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-// const initialState: string[] = []
-
 interface Equipment {
 	id: number
 	name: string
