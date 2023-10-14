@@ -17,6 +17,11 @@ Installation
 
 ```bash
 npm i
+
+If you encounter errors while trying to run this command try:
+
+npm i --legacy-peer-deps
+    a quick fix until material core releases support for react 18
 ```
 
 Start the application
